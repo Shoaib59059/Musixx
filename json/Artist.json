@@ -1,0 +1,28 @@
+[
+  {
+    "image": "Artist_Images/Rihanna.png",
+    "name": "Rihanna"
+  },
+  {
+    "image": "Artist_Images/Atif.jpg",
+    "name": "Atif Aslam"
+  },
+
+  {
+    "image": "Artist_Images/Arijit.jpg",
+    "name": "Arijit Singh"
+  },
+
+  {
+    "image": "Artist_Images/Dhvani.jpg",
+    "name": "Dhvani"
+  },
+  {
+    "image": "Artist_Images/Jubin.png",
+    "name": "Jubin"
+  },
+  {
+    "image": "Artist_Images/Arman.png",
+    "name": "Arman"
+  }
+]

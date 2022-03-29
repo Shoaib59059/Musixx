@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:musixx/colorsInApp.dart' as AppColors;
+import 'dart:convert';
+
 // import 'package:musixx/assets/images'
 
 class MyApp extends StatelessWidget {
@@ -29,10 +31,80 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
+
+  // get s => null;
+
   setBottomBarIndex(index) {
     setState(() {
       currentIndex = index;
     });
+  }
+
+  // final ScrollController _scrollController;
+  // final TabController _tabController;
+  List Images_Artist = [];
+  late List Name_Artist;
+  List Images_Recently_Played = [];
+  late List Name_Recently_Played;
+  List Images_Made_For_You = [];
+  late List Name_Made_For_You;
+
+  // Artist
+  ReadData() async {
+    await DefaultAssetBundle.of(context)
+        .loadString("json/Artist.json")
+        .then((s) {
+      setState(() {
+        Name_Artist = json.decode(s);
+      });
+    });
+    await DefaultAssetBundle.of(context)
+        .loadString("json/Artist.json")
+        .then((t) {
+      setState(() {
+        Images_Artist = json.decode(t);
+      });
+    });
+
+    // Recently Played
+    await DefaultAssetBundle.of(context)
+        .loadString("json/Recently_Played.json")
+        .then((s) {
+      setState(() {
+        Images_Recently_Played = json.decode(s);
+      });
+    });
+
+    await DefaultAssetBundle.of(context)
+        .loadString("json/Recently_Played.json")
+        .then((s) {
+      setState(() {
+        Name_Recently_Played = json.decode(s);
+      });
+    });
+
+    // Made For You
+    await DefaultAssetBundle.of(context)
+        .loadString("json/Made_For_You.json")
+        .then((s) {
+      setState(() {
+        Images_Made_For_You = json.decode(s);
+      });
+    });
+
+    await DefaultAssetBundle.of(context)
+        .loadString("json/Made_For_You.json")
+        .then((s) {
+      setState(() {
+        Name_Made_For_You = json.decode(s);
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    ReadData();
   }
 
   @override
@@ -80,13 +152,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text(
                     "Your Favourite Artist",
                     style:
-                        TextStyle(color: AppColors.lightSkyBLue, fontSize: 20),
+                        // TextStyle(color: AppColors.lightSkyBLue, fontSize: 20),
+                        TextStyle(color: Colors.redAccent[100], fontSize: 20),
                   ),
                 ),
               ],
             ),
 
-            // SizedBox(height: 20),
+            // ~Circular Avatar Artist
             Container(
               height: 150,
               child: Stack(
@@ -98,8 +171,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Container(
                       height: 300,
                       child: PageView.builder(
-                        controller: PageController(viewportFraction: 0.155),
-                        itemCount: 5,
+                        controller: PageController(viewportFraction: 0.1455),
+                        // itemCount: 5,
+                        itemCount:
+                            Images_Artist == null ? 0 : Images_Artist.length,
                         itemBuilder: (_, i) {
                           return Column(
                             children: [
@@ -111,19 +186,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                   radius: 40,
                                   // borderRadius.circular(50),
                                   child: ClipRRect(
-                                    child: Image.asset("img/atif.jpg"),
+                                    child:
+                                        Image.asset(Images_Artist[i]["image"]),
+                                    // image: AssetImage(Images_Recently_Played[i]["image"]),
                                     // fit: BoxFit.fill()
                                     borderRadius: BorderRadius.circular(500),
                                   ),
                                 ),
                               ),
                               Container(
+                                  child: Align(
+                                alignment: Alignment.center,
                                 child: Text(
-                                  "Atif Aslam",
+                                  // "Atif Aslam",
+                                  Name_Artist[i]["name"],
                                   style:
                                       TextStyle(color: AppColors.lightSkyBLue),
                                 ),
-                              ),
+                              )),
                             ],
                           );
                         },
@@ -137,7 +217,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               children: [
                 Container(
-                  margin: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                  margin: EdgeInsets.only(left: 10, bottom: 10, top: 0),
                   child: Text(
                     "Recently Played",
                     style:
@@ -147,9 +227,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
 
-            // ~ 2nd scrollable
+            // ~ 2nd scrollable - Recently Played
             Container(
-              height: 200,
+              height: 190,
               child: Stack(
                 children: [
                   Positioned(
@@ -160,7 +240,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 200,
                       child: PageView.builder(
                         controller: PageController(viewportFraction: 0.3005),
-                        itemCount: 5,
+                        // itemCount: 5,
+                        itemCount: Images_Recently_Played == null
+                            ? 0
+                            : Images_Recently_Played.length,
                         itemBuilder: (_, i) {
                           return Column(
                             children: [
@@ -170,14 +253,17 @@ class _MyHomePageState extends State<MyHomePage> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   // borderRadius.
-                                  image: const DecorationImage(
-                                    image: AssetImage("Music_Images/EDM_4.jpg"),
+                                  image: DecorationImage(
+                                    // image: AssetImage("Music_Images/EDM_4.jpg"),
+                                    image: AssetImage(
+                                        Images_Recently_Played[i]["image"]),
                                   ),
                                 ),
                               ),
                               Container(
                                 child: Text(
-                                  "EDM",
+                                  // "EDM",
+                                  Name_Recently_Played[i]["name"],
                                   style:
                                       TextStyle(color: AppColors.lightSkyBLue),
                                 ),
@@ -195,19 +281,20 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               children: [
                 Container(
-                  margin: EdgeInsets.only(left: 10, bottom: 10, top: 10),
-                  child: Text(
+                  margin: EdgeInsets.only(left: 10, bottom: 19, top: 0),
+                  child: const Text(
                     "Made For You",
                     style:
-                        TextStyle(color: AppColors.lightSkyBLue, fontSize: 20),
+                        // TextStyle(color: AppColors.lightSkyBLue, fontSize: 20),
+                        TextStyle(color: Colors.green, fontSize: 20),
                   ),
                 ),
               ],
             ),
 
-            // ~ 3rd scrollable
+            // ~ 3rd scrollable - Made For You
             Container(
-              height: 160,
+              height: 190,
               child: Stack(
                 children: [
                   Positioned(
@@ -218,7 +305,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 300,
                       child: PageView.builder(
                         controller: PageController(viewportFraction: 0.43),
-                        itemCount: 5,
+                        // itemCount: 5,
+                        itemCount: Images_Made_For_You == null
+                            ? 0
+                            : Images_Made_For_You.length,
                         itemBuilder: (_, i) {
                           return Column(
                             children: [
@@ -228,15 +318,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   // borderRadius.
-                                  image: const DecorationImage(
-                                    image:
-                                        AssetImage("Music_Images/EDM_2.jpeg"),
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        Images_Made_For_You[i]["image"]),
                                   ),
                                 ),
                               ),
                               Container(
                                 child: Text(
-                                  "Classic",
+                                  // "Classic",
+                                  Name_Made_For_You[i]["name"],
                                   style:
                                       TextStyle(color: AppColors.lightSkyBLue),
                                 ),
@@ -270,10 +361,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),*/
           ]),
-
           bottomNavigationBar: BottomAppBar(
             // color: Colors.black,
-            color: AppColors.background,
+            // color: AppColors.background,
+            color: Colors.yellow,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
