@@ -1,17 +1,24 @@
 [
   {
-    "image": "Made_For_You_Images/jubin.jpeg",
-    "name": "Daily Mix"
+    "image": "Made_For_You_Images/SongOfTheDay.jpg",
+    "name": "Song Of The Day"
   },
 
   {
-    "image": "Made_For_You_Images/EDM_3.jpg",
+    "image": "Made_For_You_Images/LetsRock.jpg",
+    "name": "Let's Rock"
+  },
+  {
+    "image": "Made_For_You_Images/DailyMix.png",
+    "name": "Daily Mix"
+  },
+  {
+    "image": "Made_For_You_Images/Acoustic.jpg",
     "name": "Acoustic"
   },
 
   {
-    "image": "Made_For_You_Images/EDM_4.jpg",
-    "name": "Let's Rock"
-
+    "image": "Made_For_You_Images/Lofi.jpeg",
+    "name": "Lofi"
   }
 ]

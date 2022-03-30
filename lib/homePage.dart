@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:musixx/colorsInApp.dart' as AppColors;
 import 'dart:convert';
 
-// import 'package:musixx/assets/images'
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -32,16 +30,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
 
-  // get s => null;
-
   setBottomBarIndex(index) {
     setState(() {
       currentIndex = index;
     });
   }
 
-  // final ScrollController _scrollController;
-  // final TabController _tabController;
   List Images_Artist = [];
   late List Name_Artist;
   List Images_Recently_Played = [];
@@ -110,13 +104,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.background,
-      // appBar: AppBar(
-      //   title: Text(widget.title),
-      // ),
+      color: AppColors.background9,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: AppColors.background,
+          backgroundColor: AppColors.background9,
           body: Column(children: [
             Row(
               children: [
@@ -149,11 +140,12 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Container(
                   margin: EdgeInsets.only(left: 10, bottom: 3, top: 10),
-                  child: Text(
+                  child: const Text(
                     "Your Favourite Artist",
                     style:
                         // TextStyle(color: AppColors.lightSkyBLue, fontSize: 20),
-                        TextStyle(color: Colors.redAccent[100], fontSize: 20),
+                        // TextStyle(color: Colors.redAccent[100], fontSize: 20),
+                        TextStyle(color: Colors.greenAccent, fontSize: 20),
                   ),
                 ),
               ],
@@ -218,10 +210,11 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Container(
                   margin: EdgeInsets.only(left: 10, bottom: 10, top: 0),
-                  child: Text(
+                  child: const Text(
                     "Recently Played",
                     style:
-                        TextStyle(color: AppColors.lightSkyBLue, fontSize: 20),
+                        // TextStyle(color: AppColors.lightSkyBLue, fontSize: 20),
+                        TextStyle(color: Colors.greenAccent, fontSize: 20),
                   ),
                 ),
               ],
@@ -286,7 +279,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     "Made For You",
                     style:
                         // TextStyle(color: AppColors.lightSkyBLue, fontSize: 20),
-                        TextStyle(color: Colors.green, fontSize: 20),
+                        TextStyle(color: Colors.greenAccent, fontSize: 20),
                   ),
                 ),
               ],
@@ -299,12 +292,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Positioned(
                     top: 0,
-                    left: -130,
+                    left: -170,
                     right: 0,
                     child: Container(
                       height: 300,
                       child: PageView.builder(
-                        controller: PageController(viewportFraction: 0.43),
+                        controller: PageController(viewportFraction: 0.3005),
                         // itemCount: 5,
                         itemCount: Images_Made_For_You == null
                             ? 0
@@ -341,30 +334,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-
-/*            Container(
-              height: 180,
-              child: PageView.builder(
-                controller: PageController(viewportFraction: 1),
-                itemCount: 5,
-                itemBuilder: (_, i) {
-                  return Container(
-                    height: 180,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      image: const DecorationImage(
-                        image: AssetImage("img/atif.jpg"),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),*/
           ]),
           bottomNavigationBar: BottomAppBar(
             // color: Colors.black,
             // color: AppColors.background,
-            color: Colors.yellow,
+            color: AppColors.bottomAppBar3,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -374,7 +348,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     icon: Icon(
                       Icons.home,
-                      color: currentIndex == 0 ? Colors.green : Colors.grey,
+                      color: currentIndex == 0 ? Colors.green : Colors.blueGrey,
                     )),
                 IconButton(
                     onPressed: () {
@@ -382,7 +356,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     icon: Icon(
                       Icons.search,
-                      color: currentIndex == 1 ? Colors.green : Colors.grey,
+                      color: currentIndex == 1 ? Colors.greenAccent : Colors.blueGrey,
                     )),
                 IconButton(
                     onPressed: () {
@@ -390,7 +364,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     icon: Icon(
                       Icons.book,
-                      color: currentIndex == 2 ? Colors.green : Colors.grey,
+                      color: currentIndex == 2 ? Colors.green : Colors.blueGrey,
                     )),
                 IconButton(
                     onPressed: () {
@@ -398,7 +372,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     icon: Icon(
                       Icons.person,
-                      color: currentIndex == 3 ? Colors.green : Colors.grey,
+                      color: currentIndex == 3 ? Colors.green : Colors.blueGrey,
                     ))
               ],
             ),

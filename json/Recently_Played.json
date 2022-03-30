@@ -1,17 +1,22 @@
 [
   {
-    "image": "Recently_Played_Images/EDM.png",
-    "name": "Classic"
+    "image": "Recently_Played_Images/Top50_Global.jpeg",
+    "name": "Top 50 Global"
   },
 
   {
-    "image": "Recently_Played_Images/EDM_3.jpg",
+    "image": "Recently_Played_Images/EDM.jpg",
     "name": "EDM"
   },
 
   {
-    "image": "Recently_Played_Images/EDM_4.jpg",
-    "name": "Hip Hop"
+    "image": "Recently_Played_Images/Classical.jpg",
+    "name": "Classical"
+  },
+
+  {
+    "image": "Recently_Played_Images/MoodBooster.png",
+    "name": "Mood Booster"
 
   }
 ]
